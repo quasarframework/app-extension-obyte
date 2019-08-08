@@ -1,29 +1,41 @@
-Quasar App Extension Title <- change name
+QObyte (@quasar/obyte)
 ===
 
-_Be sure to change this readme as appropriate for your app extension._
+QObyte is an extension aimed to ease the interactions with the Obyte blockchain using the library [obytejs](https://github.com/bonustrack/obyte.js)
 
-_Think about the organization of this file and how the information will be beneficial to the user._
-
-> Add a short description of your App Extension. What does it do? How is it beneficial? Why would someone want to use it?
 
 # Install
 ```bash
-quasar ext add my-ext <- change name
+quasar ext add @quasar/obyte
 ```
 Quasar CLI will retrieve it from NPM and install the extension.
 
-## Prompts
+# Environment variables
 
-> If your app extension uses prompts, explain them here, otherwise remove this section.
+This extension uses 2 environment variables. You can set either
+
+```bash
+OBYTE_API
+`````
+for the main net
+
+or, for the test net
+
+```bash
+OBYTE_TESTNET_API
+`````
 
 # Uninstall
 ```bash
-quasar ext remove my-ext <- change name
+quasar ext remove @quasar/obyte
 ```
 
 # Info
-> Add longer information here that will help the user of your app extension.
+The obyte client is now available as a Vue prototype. You can access it in a Vue component this way
+
+```bash
+this.$obyte
+```
 
 # Other Info
 > Add other information that's not as important to know
