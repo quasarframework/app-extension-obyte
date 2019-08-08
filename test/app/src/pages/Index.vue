@@ -9,6 +9,11 @@
 
 <script>
 export default {
-  name: 'PageIndex'
+  name: 'PageIndex',
+  mounted () {
+    this.$obyte.api.getWitnesses(function (err, result) {
+      console.log(err, result)
+    })
+  }
 }
 </script>
