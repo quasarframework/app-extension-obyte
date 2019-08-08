@@ -1,5 +1,5 @@
 {
-  "name": "quasar-app-extension-obyte",
+  "name": "@quasar/quasar-app-extension-obyte",
   "version": "0.0.1",
   "description": "The Official Quasar App Extension for Obyte",
   "author": "Daniel Thompson-Yvetot <denjell@quasar.dev>",

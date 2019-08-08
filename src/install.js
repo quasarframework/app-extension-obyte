@@ -6,5 +6,5 @@
  */
 
 module.exports = function (api) {
-  //
+	console.log('works')
 }
