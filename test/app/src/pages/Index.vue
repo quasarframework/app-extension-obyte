@@ -1,6 +1,9 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+    <h4 class="text-weight-thin q-mr-lg">Witnesses</h4>
+    <pre>
+      <li v-for="(witness, index) in witnesses" :key="index"> {{ witness }}</li>
+    </pre>
   </q-page>
 </template>
 
@@ -10,9 +13,15 @@
 <script>
 export default {
   name: 'PageIndex',
+  data () {
+    return {
+      witnesses: ['loading']
+    }
+  },
   mounted () {
-    this.$obyte.api.getWitnesses(function (err, result) {
+    this.$obyte.api.getWitnesses(async (err, result) => {
       console.log(err, result)
+      this.witnesses = await result
     })
   }
 }
