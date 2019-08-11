@@ -15,15 +15,17 @@ Quasar CLI will retrieve it from NPM and install the extension.
 This extension uses 2 environment variables. You can set either
 
 ```bash
-OBYTE_API
+OBYTE_API="wss://..."
 `````
 for the main net
 
 or, for the test net
 
 ```bash
-OBYTE_TESTNET_API
+OBYTE_TESTNET_API="wss://..."
 `````
+
+Notice the quotes, don't forget them
 
 # Uninstall
 ```bash
