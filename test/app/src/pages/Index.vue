@@ -41,7 +41,7 @@
       <q-tab-panel name="walletAddress" class="flex flex-center row">
         <q-card class="col-6">
           <q-card-section v-if="addressInformation">
-            <pre>
+            <pre style="white-space: pre-wrap;">
               {{ addressInformation }}
             </pre>
           </q-card-section>
@@ -130,7 +130,6 @@
 
 <script>
 import { toWif, getChash160 } from 'obyte/lib/utils'
-import Mnemonic from 'bitcore-mnemonic'
 
 const testnet = true // Change to "true" to generate testnet wallet
 const path = testnet ? "m/44'/1'/0'/0/0" : "m/44'/0'/0'/0/0"
@@ -172,11 +171,11 @@ export default {
     },
     generateNewAddress () {
       this.loading = true
-      let mnemonic = new Mnemonic()
-      while (!Mnemonic.isValid(mnemonic.toString())) {
-        mnemonic = new Mnemonic()
+      this.mnemonic = new this.$Mnemonic()
+      while (!this.$Mnemonic.isValid(this.mnemonic.toString())) {
+        this.mnemonic = new this.$Mnemonic()
       }
-      const xPrivKey = mnemonic.toHDPrivateKey()
+      const xPrivKey = this.mnemonic.toHDPrivateKey()
       const { privateKey } = xPrivKey.derive(path)
       const privKeyBuf = privateKey.bn.toBuffer({ size: 32 })
       const wif = toWif(privKeyBuf, testnet)
@@ -186,11 +185,11 @@ export default {
       this.loading = false
 
       this.addressInformation = `
-        \nSeed: ${mnemonic.phrase}
-        \nPath:${path}
-        \nWIF: ${wif},
-        \nPublic key: ${pubkey}
-        \nAddress: ${address}
+        \nSeed:\n ${this.mnemonic.phrase}
+        \nPath:\n ${path}
+        \nWIF:\n ${wif}
+        \nPublic key:\n ${pubkey}
+        \nAddress:\n ${address}
         `
     },
     async getWalletBalance () {

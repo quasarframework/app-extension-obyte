@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
-    "bitcore-mnemonic": "^8.6.0",
     "quasar": "^1.0.0"
   },
   "devDependencies": {
