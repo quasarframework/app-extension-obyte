@@ -17,9 +17,9 @@
     <q-separator />
 
     <q-tab-panels v-model="tab" animated>
-      <q-tab-panel name="witnesses" class="flex flex-center">
-        <q-card>
-          <q-card-actions>
+      <q-tab-panel name="witnesses" class="flex flex-center row">
+        <q-card class="col-6">
+          <q-card-actions align="right">
             <q-btn
               color="primary"
               @click="loadWitnesses"
@@ -38,14 +38,17 @@
           </q-card-section>
         </q-card>
       </q-tab-panel>
-      <q-tab-panel name="walletAddress" class="flex flex-center">
-        <q-card>
-          <q-card-section>
+      <q-tab-panel name="walletAddress" class="flex flex-center row">
+        <q-card class="col-6">
+          <q-card-section v-if="addressInformation">
             <pre>
               {{ addressInformation }}
             </pre>
           </q-card-section>
-          <q-card-actions>
+          <q-card-section v-else>
+            Click on the button to generate a new wallet
+          </q-card-section>
+          <q-card-actions align="right">
             <q-btn
               color="primary"
               @click="generateNewAddress"
@@ -56,15 +59,15 @@
           </q-card-actions>
         </q-card>
       </q-tab-panel>
-      <q-tab-panel name="balance" class="flex flex-center">
-        <q-card>
+      <q-tab-panel name="balance" class="flex flex-center row">
+        <q-card class="col-6">
           <q-card-section>
             <q-input
               v-model="wallet.address"
               label="Address"
             />
           </q-card-section>
-          <q-card-actions>
+          <q-card-actions align="right">
             <q-btn
               color="primary"
               @click="getWalletBalance"
@@ -80,8 +83,8 @@
           </q-card-section>
         </q-card>
       </q-tab-panel>
-      <q-tab-panel name="transfer">
-        <q-card>
+      <q-tab-panel name="transfer" class="flex flex-center row">
+        <q-card class="col-6">
           <q-card-section>
             <q-input
               v-model="transfer.address"
@@ -103,10 +106,19 @@
             <q-btn
               color="primary"
               @click="transferAssets"
+              :loading="loading"
             >
               Send payment
             </q-btn>
           </q-card-actions>
+          <q-card-section v-if="transactionResult">
+            <a
+              :href="`${explorerUrl}${transactionResult}`"
+              target="_blank"
+            >
+              Transaction
+            </a>
+          </q-card-section>
         </q-card>
       </q-tab-panel>
     </q-tab-panels>
@@ -129,7 +141,7 @@ export default {
     return {
       tab: 'witnesses',
       witnesses: ['loading'],
-      addressInformation: 'Click on the button to generate a new wallet',
+      addressInformation: null,
       loading: false,
       wallet: {
         address: null,
@@ -139,7 +151,8 @@ export default {
         address: null,
         amount: null,
         wif: null
-      }
+      },
+      transactionResult: null
     }
   },
   watch: {
@@ -192,16 +205,28 @@ export default {
       }
     },
     async transferAssets () {
-      const res = await this.$obyte.post.payment(
-        [
-          {
-            address: this.transfer.address,
-            amount: this.transfer.amount
-          }
-        ],
+      this.loading = true
+      this.transactionResult = null
+      this.transactionResult = await this.$obyte.post.payment(
+        {
+          outputs: [
+            {
+              address: this.transfer.address,
+              amount: parseInt(this.transfer.amount)
+            }
+          ]
+        },
         this.transfer.wif
       )
-      console.log(res)
+      this.loading = false
+    }
+  },
+  computed: {
+    explorerUrl () {
+      if (this.$obyte.options.testnet) {
+        return 'https://testnetexplorer.obyte.org/#'
+      }
+      return 'https://explorer.obyte.org/#'
     }
   }
 }
