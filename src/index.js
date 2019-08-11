@@ -7,8 +7,8 @@ const extendConf = function (conf) {
     if (!conf.build.env) {
         conf.build.env = {}
     }
-    conf.build.env.OBYTE_URL = process.env.OBYTE_URL
-    conf.build.env.OBYTE_TESTNET_URL = process.env.OBYTE_TESTNET_URL
+    conf.build.env.OBYTE_API = process.env.OBYTE_API
+    conf.build.env.OBYTE_TESTNET_API = process.env.OBYTE_TESTNET_API
 
     // make sure boot & component files transpile
     conf.build.transpileDependencies.push(/quasar-app-extension-obyte[\\/]src/)

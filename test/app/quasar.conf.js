@@ -3,6 +3,11 @@
 
 module.exports = function (ctx) {
   return {
+    // custom block added by @quasar/obyte
+    obyte: {
+      obyte_api: '',
+      testnet: false
+    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
@@ -31,19 +36,28 @@ module.exports = function (ctx) {
       // all: true, // --- includes everything; for dev only!
 
       components: [
-        'QLayout',
-        'QHeader',
+        'QBtn',
+        'QCard',
+        'QCardActions',
+        'QCardSection',
         'QDrawer',
+        'QHeader',
+        'QIcon',
+        'QInput',
+        'QItem',
+        'QItemLabel',
+        'QItemSection',
+        'QLayout',
+        'QList',
         'QPageContainer',
         'QPage',
+        'QSeparator',
+        'QTab',
+        'QTabs',
+        'QTabPanel',
+        'QTabPanels',
         'QToolbar',
-        'QToolbarTitle',
-        'QBtn',
-        'QIcon',
-        'QList',
-        'QItem',
-        'QItemSection',
-        'QItemLabel'
+        'QToolbarTitle'
       ],
 
       directives: [

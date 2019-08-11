@@ -1,4 +1,5 @@
 import obyte from 'obyte'
+import Mnemonic from 'bitcore-mnemonic'
 
 export default ({ Vue }) => {
   let client
@@ -10,4 +11,5 @@ export default ({ Vue }) => {
     client = new obyte.Client()
   }
   Vue.prototype.$obyte = client
+  Vue.prototype.$Mnemonic = Mnemonic
 }

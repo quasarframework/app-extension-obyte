@@ -1,6 +1,6 @@
 {
   "name": "@quasar/quasar-app-extension-obyte",
-  "version": "0.0.1",
+  "version": "1.0.0-alpha.1",
   "description": "The Official Quasar App Extension for Obyte",
   "author": "Daniel Thompson-Yvetot <denjell@quasar.dev>",
   "license": "MIT",
@@ -10,9 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nothingismagick/app-extension-obyte"
+    "url": "https://github.com/quasarframework/app-extension-obyte"
   },
-  "bugs": "https://github.com/nothingismagick/app-extension-obyte/issues",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": "https://github.com/quasarframework/app-extension-obyte/issues",
   "homepage": "https://quasar.dev",
   "engines": {
     "node": ">= 8.9.0",
@@ -20,6 +23,8 @@
     "yarn": ">= 1.6.0"
   },
   "dependencies": {
+    "bitcore-mnemonic": "^8.6.0",
+    "fs-extra": "^8.1.0",
     "obyte": "^0.1.5"
   }
 }
