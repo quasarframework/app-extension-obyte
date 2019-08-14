@@ -24,7 +24,6 @@
   },
   "dependencies": {
     "bitcore-mnemonic": "^8.6.0",
-    "fs-extra": "^8.1.0",
     "obyte": "^0.1.5"
   }
 }

@@ -3,11 +3,6 @@
 
 module.exports = function (ctx) {
   return {
-    // custom block added by @quasar/obyte
-    obyte: {
-      obyte_api: '',
-      testnet: false
-    },
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
